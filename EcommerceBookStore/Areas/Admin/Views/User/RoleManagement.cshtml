@@ -1,0 +1,100 @@
+﻿@model RoleManagementViewModel
+
+<section class="container content">
+	<ol class="breadcrumb float-sm-right pt-3">
+		<li class="breadcrumb-item">
+			<a asp-area="Customer"
+			   asp-controller="Home"
+			   asp-action="Index"
+			   style="text-decoration:none;color:#000">
+				Home
+			</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a asp-area="Admin"
+			   asp-controller="User"
+			   asp-action="Index"
+			   style="text-decoration:none;color:#000">
+				User
+			</a>
+		</li>
+		<li class="breadcrumb-item active">Role</li>
+	</ol>
+
+	<form method="post" class="mb-5">
+		<input asp-for="ApplicationUser.Id" hidden />
+		<div class="card">
+			<div class="card-header bg-gradient" style="background-color:#FF90BC">
+				<div class="row my-2">
+					<h2 class="text-white text-center">Manage User Role</h2>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="bs-stepper-content">
+					<div id="" class="content row" role="tabpanel" aria-labelledby="logins-part-trigger">
+						<div class="form-floating py-2 col-12">
+							<input asp-for="ApplicationUser.Name" readonly id="category-name" class="form-control border-0 shadow" />
+							<label asp-for="ApplicationUser.Name" class="ms-2"></label>
+						</div>
+
+						<div class="form-floating py-2 mb-3 col-12">
+							<select asp-for="ApplicationUser.Role" asp-items="@Model.RoleList" class="form-select border-0 shadow">
+							</select>
+						</div>
+
+						@{
+							var companyVisible = "display: none";
+						}
+
+						@if (Model.ApplicationUser.Role == SD.Role_Company) {
+							companyVisible = "display: block;";
+						}
+
+						<div class="form-floating py-2 mb-3 col-12">
+							<select asp-for="ApplicationUser.CompanyId" asp-items="@Model.CompanyList"
+									style="@companyVisible"
+									class="form-select border-0 shadow">
+							</select>
+						</div>
+
+						<div class="row form-group my-md-3">
+							<div class="col-6 col-md-3">
+								<a asp-area="Admin"
+								   asp-action="Index"
+								   class="btn text-white mr-4 form-control"
+								   style="background-color: #FF8080">
+									<i class="bi bi-arrow-bar-left"></i>
+									Back To List
+								</a>
+							</div>
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-primary form-control">
+									<i class="bi bi-check-lg"></i>
+									Update
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	<script>
+		$(document).ready(function () {
+			$("#ApplicationUser_Role").change(function () {
+				var selection = $("#ApplicationUser_Role Option:Selected").text();
+				if (selection == "Company") {
+					$("#ApplicationUser_CompanyId").show();
+				} else {
+					$("#ApplicationUser_CompanyId").hide();
+				}
+			});
+		});
+	</script>
+}

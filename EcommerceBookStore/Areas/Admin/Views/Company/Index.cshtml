@@ -1,0 +1,48 @@
+﻿@model List<Company>
+
+<div class="container">
+	<ol class="breadcrumb float-sm-right pt-3">
+		<li class="breadcrumb-item">
+			<a asp-area="Customer" asp-controller="Home" asp-action="Index" style="text-decoration:none;color:#000">Home</a>
+		</li>
+		<li class="breadcrumb-item active">Company</li>
+	</ol>
+
+	<div class="card shadow border-0 mb-5 mt-3">
+		<div class="card-header bg-gradient ml-0 py-3" style="background-color:#86A7FC">
+			<div class="row">
+				<div class="col-12 text-center">
+					<h2 class="text-white">Company List</h2>
+				</div>
+			</div>
+		</div>
+		<div class="card-body p-4">
+			<div class="row pb-3">
+				<div class="col-6">
+				</div>
+				<div class="col-6 text-end">
+					<a asp-action="Upsert" class="btn btn-outline-primary">
+						<i class="bi bi-plus-square"></i>
+						Create New Company
+					</a>
+				</div>
+			</div>
+			<table id="dataTable" class="table" style="width: 100%">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Address</th>
+						<th>City</th>
+						<th>State</th>
+						<th>Phone Number</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/js/company.js"></script>
+}

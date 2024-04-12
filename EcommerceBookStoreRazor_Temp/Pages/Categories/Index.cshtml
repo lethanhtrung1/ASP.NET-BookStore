@@ -1,0 +1,82 @@
+﻿@page
+@model EcommerceBookStoreRazor_Temp.Pages.Categories.IndexModel
+
+<ol class="breadcrumb float-sm-right">
+	<li class="breadcrumb-item"><a asp-page="/Index" style="text-decoration:none;color:#000">Home</a></li>
+	<li class="breadcrumb-item active">Category</li>
+</ol>
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-info bg-gradient ml-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white">Category List</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row pb-3">
+			<div class="col-6">
+			</div>
+			<div class="col-6 text-end">
+				<a asp-page="/categories/create" class="btn btn-outline-primary">
+					<i class="bi bi-plus-square"></i>
+					Create New Category
+				</a>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th style="width: 50px">
+						<input type="checkbox" id="select-all" class="align-content-center" />
+					</th>
+					<th class="text-center">Category Name</th>
+					<th class="text-center">Display Order</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model != null && Model.CategoryList.Any()) {
+					foreach (var item in Model.CategoryList) {
+						<tr>
+							<td>
+								<input type="checkbox" class="checkbox-item" value="@item.Id" />
+							</td>
+							<td class="text-center">@item.Name</td>
+							<td class="text-center">@item.DisplayOrder</td>
+							<td class="d-flex justify-content-center">
+								<a asp-page="/categories/edit" asp-route-categoryId="@item.Id" class="btn btn-outline-success mx-1" style="min-width: 120px">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+								<a asp-page="/categories/delete" asp-route-categoryId="@item.Id" class="btn btn-outline-danger mx-1" style="min-width: 120px">
+									<i class="bi bi-trash"></i>
+								</a>
+							</td>
+						</tr>
+					}
+				} else {
+					<tr>
+						<td colspan="4">Không có bản ghi nào!!!</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	<div class="card-footer bg-white border-top-0">
+		<nav aria-label="Page navigation example" class="mb-4">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					<a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+						<i class="bi bi-arrow-left"></i>
+					</a>
+				</li>
+				<li class="page-item"><a class="page-link text-center" style="width:40px" href="#">1</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#">
+						<i class="bi bi-arrow-right"></i>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>

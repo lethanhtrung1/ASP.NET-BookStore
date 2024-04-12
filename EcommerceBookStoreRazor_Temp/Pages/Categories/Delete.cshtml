@@ -1,0 +1,57 @@
+﻿@page
+@model EcommerceBookStoreRazor_Temp.Pages.Categories.DeleteModel
+
+<section class="content">
+	<ol class="breadcrumb float-sm-right">
+		<li class="breadcrumb-item">
+			<a asp-page="/index" style="text-decoration:none;color:#000">Home</a>
+		</li>
+		<li class="breadcrumb-item">
+			<a asp-page="/categories/index" style="text-decoration:none;color:#000">Category</a>
+		</li>
+		<li class="breadcrumb-item active">Delete</li>
+	</ol>
+
+	<form method="post">
+		<input asp-for="Category.Id" hidden />
+		<div class="card">
+			<div class="card-header bg-white">
+				<div class="row my-2">
+					<h2>Edit Category</h2>
+				</div>
+			</div>
+			<div class="card-body">
+				<div asp-validation-summary="None"></div>
+				<div class="bs-stepper-content">
+					<div id="" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+						<div class="form-group mb-3">
+							<label asp-for="Category.Name"></label>
+							<input asp-for="Category.Name" id="category-name" class="form-control mt-1" />
+						</div>
+
+						<div class="form-group mb-3">
+							<label asp-for="Category.DisplayOrder"></label>
+							<input asp-for="Category.DisplayOrder" id="display-order" class="form-control mt-1" />
+						</div>
+
+						<div class="row form-group my-md-3">
+							<div class="col-6 col-md-3">
+								<a asp-page="/categories/index" class="btn btn-info mr-4 form-control">
+									<i class="bi bi-arrow-bar-left"></i>
+									Back To List
+								</a>
+							</div>
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-danger form-control">
+									<i class="bi bi-trash"></i>
+									Delete
+								</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
